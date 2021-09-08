@@ -118,3 +118,54 @@ STATIC_URL = '/static/'
 STATICFILES_DIR = (
     os.path.join(BASE_DIR,'static'),
 )
+
+
+
+# dev
+from .settings import *
+
+LOGGING = {
+    'version':1,
+    'disable_existing_loggers':False,
+
+    'loggers':{
+        'django':{
+            'handlers':['console'],
+            'level':'INFO',
+        },
+        'diary':{
+            'handlers':['console'],
+            'level':'DEBUG',      
+        },
+    },
+
+    'handlers':{
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+            'formatter':'dev'
+        },
+    },
+    'formatters':{
+        'dev':{
+            'format':'\t'.join([
+                '%(asctime)s',
+                '[%(levelname)s]',
+                '%(pathname)s(Line:%(lineno)d)',
+                '%(message)s'
+            ])
+        },
+    }
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# common
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'alert alert-danger',
+    messages.WARNING:'alert alert-warning',
+    messages.SUCCESS:'alert alert-success',
+    messages.INFO:'alert alert-info'
+}

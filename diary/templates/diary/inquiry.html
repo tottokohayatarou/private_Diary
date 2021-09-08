@@ -13,7 +13,7 @@
                 <div class="row gx-5 align-items-center">
                     <div class="my-div-style">
 
-                        <form action="POST">
+                        <form method="POST">
                             {% csrf_token %}
                             {{ form.non_field_errors}}
                             {% for field in form %}
