@@ -8,6 +8,7 @@
         <meta name="author" content="" />
         <title>{% block title %}{% endblock %}</title>
         <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+        <!-- Boot strap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -31,12 +32,18 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sign Up</a>
+                            <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Log In</a>
+                            <a class="nav-link" href="{% url 'account_login' %}">Log In</a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -45,20 +52,22 @@
         {% block header %}{% endblock  %}
 
         {% if messages %}
-        <div class="container">
-            <div class="row">
-                <div class="my-div-style w-100">
-                    <ul class="messages" style="list-style:none;">
-                    {% for message in messages %}
-                        <li {% if message.tags %}class="{{message.tags}}"{% endif %}>
-                        {{message}}
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        </div>
-        {% endif %}
+         <div class="container">
+             <div class="row">
+                 <div class="my-div-style w-100">
+                     <ul class="messages" style="list-style: none;">
+                        {% for msg in messages %}
+                         <li {% if msg.tags %} class="{{ msg.tags}}">
+                             {% endif %}
+                             {{ msg }}
+                         </li>
+                         {% endfor %}
+                     </ul>
+                 </div>
+             </div>
+         </div>
+         {% endif %}
+
         <!-- Content section 1-->
         {% block contents %}{% endblock %}
         <!-- Footer-->
