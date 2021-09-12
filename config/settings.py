@@ -176,6 +176,8 @@ MESSAGE_TAGS = {
     messages.INFO:'alert alert-info'
 }
 
+# 管理
+# http://127.0.0.1:8000/admin/login/?next=/admin/
 # 207p
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
