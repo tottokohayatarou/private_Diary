@@ -203,3 +203,7 @@ DEFAULT_FROM_EMAIL = 'admin@example.com'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# p250
+LOGIN_REDIRECT_URL = 'diary:diary_list'
+
