@@ -1,7 +1,7 @@
 {% extends 'diary/base.html' %}
 {% load static %}
 
-{% block title %}日記詳細 | Private Diary{% endblock %}
+{% block title %}日記作成 | Private Diary{% endblock %}
 
 {% block active_diary_list %}active{% endblock %}
 
@@ -66,6 +66,7 @@
                 {{ object.updated_at }}
             </div>
         </div>
+        <a class="btn btn-success mt-5 mb-3" href="{% url 'diary:diary_update' object.pk %}">編集</a>
     </div>
 </div>
 {% endblock %}
